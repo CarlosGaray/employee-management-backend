@@ -7,6 +7,8 @@ import { employeeRouter } from './employee.routes';
 dotenv.config();
 
 const { ATLAS_URI } = process.env;
+const BASE_URL = process.env.BASE_URL;
+const PORT = process.env.PORT;
 
 if(!ATLAS_URI) {
     console.log("No ATLAS_URI enviroment variable has been declared on .env");
@@ -20,8 +22,8 @@ connectToDataBase(ATLAS_URI)
         app.use("/employees", employeeRouter);
 
 
-        app.listen(5200, () => {
-            console.log(`Server running at http://localhost:5200`)
+        app.listen(PORT, () => {
+            console.log(`Server running at ${BASE_URL}`)
         })
     })
     .catch(error => console.error(error));
